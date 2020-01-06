@@ -1,20 +1,44 @@
 // @flow
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import routes from '../constants/routes.json';
-import styles from './Home.css';
+import React, { useEffect, useState } from 'react';
+import { withRouter, type ContextRouter } from 'react-router';
+import { withStorage, type WithStorageInjectedProps } from '../storage';
+import SearchItems from './SearchItems';
 
-type Props = {};
+type Props = {|
+  ...WithStorageInjectedProps,
+  ...ContextRouter
+|};
 
-export default class Home extends Component<Props> {
-  props: Props;
+function Home(props: Props) {
+  const { storage, history } = props;
+  const [totalItems, setTotalItems] = useState(null);
 
-  render() {
-    return (
-      <div className={styles.container} data-tid="container">
-        <h2>Home</h2>
-        <Link to={routes.COUNTER}>to Counter</Link>
+  useEffect(() => {
+    storage('login_items')
+      .count('id', { as: 'id_count' })
+      .then(result => {
+        return setTotalItems(result[0].id_count);
+      })
+      .catch(error => {
+        console.log('Error', error);
+      });
+  }, []);
+
+  const handleAddNewItemClick = () => {
+    history.push('/items/new');
+  };
+
+  return (
+    <>
+      <div>{totalItems} secrets stored</div>
+      <button type="button" onClick={handleAddNewItemClick}>
+        + Add new Item
+      </button>
+      <div>
+        <SearchItems />
       </div>
-    );
-  }
+    </>
+  );
 }
+
+export default withStorage(withRouter<WithStorageInjectedProps>(Home));

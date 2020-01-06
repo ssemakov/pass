@@ -14,5 +14,10 @@
     "postinstall": "yarn electron-rebuild"
   },
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "history": "^4.10.1",
+    "knex": "^0.20.4",
+    "lodash": "^4.17.15",
+    "sqlite3": "npm:@journeyapps/sqlcipher"
+  }
 }

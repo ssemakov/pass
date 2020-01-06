@@ -95,6 +95,27 @@ export default class MenuBuilder {
       label: 'View',
       submenu: [
         {
+          label: 'Go to /',
+          accelerator: 'Command+H',
+          click: () => {
+            this.mainWindow.loadURL(`file://${__dirname}/app.html#/`);
+          }
+        },
+        {
+          label: 'Go to /login',
+          accelerator: 'Command+L',
+          click: () => {
+            this.mainWindow.loadURL(`file://${__dirname}/app.html#/login`);
+          }
+        },
+        {
+          label: 'Go to /signup',
+          accelerator: 'Command+S',
+          click: () => {
+            this.mainWindow.loadURL(`file://${__dirname}/app.html#/signup`);
+          }
+        },
+        {
           label: 'Reload',
           accelerator: 'Command+R',
           click: () => {

@@ -1,0 +1,12 @@
+{
+  "extends": "erb",
+  "rules": {
+    "react/jsx-props-no-spreading": [
+      "error",
+      {
+        "html": "enforce",
+        "custom": "ignore"
+      }
+    ]
+  }
+}
