@@ -20,7 +20,7 @@ function Home(props: Props) {
         return setTotalItems(result[0].id_count);
       })
       .catch(error => {
-        console.log('Error', error);
+        console.log('error', error);
       });
   }, []);
 

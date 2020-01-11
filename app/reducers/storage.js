@@ -1,14 +1,11 @@
 // @flow
-import {
-  AUTHENTICATION_SUCCEEDED,
-  AUTHENTICATION_FAILED
-} from '../actions/storage';
+import { AUTHENTICATION_SUCCEEDED, SET_STORAGE_PATH } from '../actions/storage';
 import type { Action, StorageState } from './types';
 
-export default function counter(
+export default function(
   state: StorageState = {
     authenticated: false,
-    authAttemptFailed: false
+    storagePath: null
   },
   action: Action
 ) {
@@ -17,14 +14,14 @@ export default function counter(
       return {
         ...state,
         authenticated: true,
-        authAttemptFailed: false,
-        secret: action.secret
+        secret: action.secret,
+        storagePath: action.storagePath
       };
-    case AUTHENTICATION_FAILED:
+    case SET_STORAGE_PATH:
+      console.log('reducer/storagePath', action.storagePath);
       return {
         ...state,
-        authenticated: false,
-        authAttemptFailed: true
+        storagePath: action.path
       };
     default:
       return state;
@@ -33,7 +30,7 @@ export default function counter(
 
 export const getAuthenticated = (state: { storage: StorageState }) =>
   state.storage.authenticated;
-export const getAuthAttemptFailed = (state: { storage: StorageState }) =>
-  state.storage.authAttemptFailed;
 export const getSecret = (state: { storage: StorageState }) =>
   state.storage.secret;
+export const getStoragePath = (state: { storage: StorageState }) =>
+  state.storage.storagePath;

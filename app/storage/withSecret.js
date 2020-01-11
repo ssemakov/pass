@@ -2,17 +2,19 @@
 import React, { type AbstractComponent } from 'react';
 import { connect } from 'react-redux';
 import { type Dispatch } from 'redux';
-import { getSecret } from '../reducers/storage';
+import { getSecret, getStoragePath } from '../reducers/storage';
 import { type AppState } from '../reducers/types';
 
 type InjectedProps = {|
-  secret: ?string
+  secret: ?string,
+  storagePath: ?string
 |};
 
 const withSecret = (Component: AbstractComponent<InjectedProps>) => {
   function mapStateToProps(state: AppState): InjectedProps {
     return {
-      secret: getSecret(state)
+      secret: getSecret(state),
+      storagePath: getStoragePath(state)
     };
   }
 
@@ -21,8 +23,16 @@ const withSecret = (Component: AbstractComponent<InjectedProps>) => {
     dispatch: Dispatch<*>
   |};
 
-  function WrapperComponent({ secret, dispatch, ...rest }: Props) {
-    return <Component secret={secret} {...(rest: $Rest<Props, Props>)} />;
+  function WrapperComponent(props: Props) {
+    const { secret, storagePath, dispatch, ...rest } = props;
+
+    return (
+      <Component
+        secret={secret}
+        storagePath={storagePath}
+        {...(rest: $Rest<Props, Props>)}
+      />
+    );
   }
 
   return connect<Props, {}, _, _, _, _>(mapStateToProps)(WrapperComponent);

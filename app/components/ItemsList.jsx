@@ -12,7 +12,6 @@ type ItemProps = {|
 |};
 
 function Item(props: ItemProps) {
-  console.log('item', props);
   const { name, login, url } = props;
 
   return (

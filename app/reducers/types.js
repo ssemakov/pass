@@ -2,8 +2,8 @@ import type { Dispatch as ReduxDispatch, Store as ReduxStore } from 'redux';
 
 export type StorageState = {
   +authenticated: boolean,
-  +authAttemptFailed: boolean,
-  +secret?: string
+  +secret?: string,
+  +storagePath?: string
 };
 
 export type AppState = {

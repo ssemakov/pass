@@ -1,7 +1,7 @@
 // @flow
 import { useEffect } from 'react';
-import fs from 'fs';
 import { withRouter, type RouterHistory } from 'react-router';
+import Settings from 'electron-settings';
 
 type Props = {
   history: RouterHistory
@@ -9,7 +9,7 @@ type Props = {
 
 function AuthNavigation({ history }: Props) {
   useEffect(() => {
-    if (fs.existsSync('storage')) {
+    if (Settings.get('default_storage_path')) {
       history.push('/login');
     } else {
       history.push('/signup');

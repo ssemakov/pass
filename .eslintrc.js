@@ -8,6 +8,7 @@ module.exports = {
     }
   },
   rules: {
+    'promise/catch-or-return': 'off',
     'react/jsx-props-no-spreading': [
       'error',
       {

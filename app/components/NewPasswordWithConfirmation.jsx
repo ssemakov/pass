@@ -9,6 +9,7 @@ type Props = {
 };
 
 export default function({ createLabel, onButtonClick }: Props) {
+  // TODO: lift state to the page SignUp component and change to Formik
   const [password, setPassword] = useState('');
   const [confirmation, setConfirmation] = useState({
     value: '',

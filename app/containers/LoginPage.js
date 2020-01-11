@@ -2,20 +2,21 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getAuthenticated, getAuthAttemptFailed } from '../reducers/storage';
+import { getAuthenticated, getStoragePath } from '../reducers/storage';
 import * as storageActions from '../actions/storage';
 import Login from '../components/Login';
 
 export type LoginPageConnectedProps = {|
   authenticated: boolean,
-  authAttemptFailed: boolean,
-  authenticate: (secret: string) => void
+  storagePath: string,
+  setStoragePath: (path: string) => void,
+  authenticate: (secret: string, path: ?string) => Promise<boolean>
 |};
 
 function mapStateToProps(state) {
   return {
     authenticated: getAuthenticated(state),
-    authAttemptFailed: getAuthAttemptFailed(state)
+    storagePath: getStoragePath(state)
   };
 }
 

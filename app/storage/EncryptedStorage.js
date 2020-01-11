@@ -1,6 +1,7 @@
 // @flow
 
 import knex from 'knex';
+import { promises as fs } from 'fs';
 
 const dbConfig = (secret: string, path: string) => ({
   client: 'sqlite3',
@@ -18,8 +19,16 @@ const dbConfig = (secret: string, path: string) => ({
   debug: true
 });
 
+// class CannotOpenFileError extends Error {
+//   constructor(message: string, code: string) {
+//     super(message);
+//     this.name = 'CannotOpenFileError';
+//     this.code = code;
+//   }
+// }
+
 class EncryptedStorage {
-  static create(secret: string, path: string = 'storage') {
+  static create(secret: string, path: string) {
     const db = knex(dbConfig(secret, path));
     return db.schema.createTable('login_items', table => {
       table.increments('id');
@@ -32,17 +41,19 @@ class EncryptedStorage {
     });
   }
 
-  static tryKey(secret: string) {
-    const db = knex(dbConfig(secret, 'storage'));
-    return db('login_items')
-      .first('id')
-      .return(true);
+  static tryKey(secret: string, path: string) {
+    return fs.access(path).then(() => {
+      const db = knex(dbConfig(secret, path));
+      return db('login_items')
+        .first('id')
+        .return(true);
+    });
   }
 
   db: knex;
 
-  constructor(secret: string) {
-    this.db = knex(dbConfig(secret, 'storage'));
+  constructor(secret: string, path: ?string) {
+    this.db = knex(dbConfig(secret, path || 'storage.pass'));
   }
 
   rekey = (newSecret: string) => {

@@ -6,14 +6,17 @@ import StorageContext from './context';
 
 const withUnlockedStorage = (Component: AbstractComponent<*>) => {
   type Props = {|
-    secret: ?string
+    secret: ?string,
+    storagePath: ?string
   |};
 
-  function WrappedComponent({ secret, ...rest }: Props) {
+  function WrappedComponent({ secret, storagePath, ...rest }: Props) {
     if (!secret) return <Component {...rest} />;
 
     return (
-      <StorageContext.Provider value={new EncryptedStorage(secret)}>
+      <StorageContext.Provider
+        value={new EncryptedStorage(secret, storagePath)}
+      >
         <Component {...rest} />
       </StorageContext.Provider>
     );

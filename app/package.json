@@ -1,13 +1,13 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "electron-react-boilerplate",
-  "version": "0.18.1",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "name": "pass",
+  "productName": "Pass",
+  "version": "0.0.1",
+  "description": "Yet another password manager.",
   "main": "./main.prod.js",
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://github.com/electron-react-boilerplate"
+    "name": "Simon Semakov",
+    "email": "simon.semakov@gmail.com",
+    "url": "https://github.com/ssemakov/pass"
   },
   "scripts": {
     "electron-rebuild": "node -r ../internals/scripts/BabelRegister.js ../internals/scripts/ElectronRebuild.js",
@@ -15,7 +15,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "history": "^4.10.1",
     "knex": "^0.20.4",
     "lodash": "^4.17.15",
     "sqlite3": "npm:@journeyapps/sqlcipher"
