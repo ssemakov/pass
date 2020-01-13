@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import ShowField from './ShowField';
 
 type ItemProps = {|
   id: number,
@@ -12,15 +13,27 @@ type ItemProps = {|
 |};
 
 function Item(props: ItemProps) {
-  const { name, login, url } = props;
+  const { name, login, password, url } = props;
 
   return (
     <div>
       <ul>
-        <li>name: {name}</li>
-        <li>login: {login}</li>
-        <li>password: ***</li>
-        <li>url: {url}</li>
+        <li>
+          name:&nbsp;
+          <ShowField value={name} />
+        </li>
+        <li>
+          login:&nbsp;
+          <ShowField value={login} />
+        </li>
+        <li>
+          password:&nbsp;
+          <ShowField hidden value={password} />
+        </li>
+        <li>
+          url:&nbsp;
+          <ShowField value={url} />
+        </li>
       </ul>
     </div>
   );
