@@ -1,6 +1,7 @@
 // @flow
 import React, { useState } from 'react';
 import { type knex } from 'knex';
+import TextField from '@material-ui/core/TextField';
 import { withStorage } from '../storage';
 import ItemsList from './ItemsList';
 
@@ -27,7 +28,12 @@ function SearchItems({ storage }: Props) {
 
   return (
     <>
-      <input placeholder="Search by name or URL" onChange={handleInputChange} />
+      <TextField
+        fullWidth
+        variant="outlined"
+        label="Search"
+        onChange={handleInputChange}
+      />
       <ItemsList items={items} />
     </>
   );
