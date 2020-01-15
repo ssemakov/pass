@@ -1,11 +1,7 @@
 // @flow
 import React, { useEffect, useState } from 'react';
 import { withRouter, type ContextRouter } from 'react-router';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
+import { Container, Grid, Fab, Tooltip, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { withStorage, type WithStorageInjectedProps } from '../storage';
 import SearchItems from './SearchItems';
@@ -54,7 +50,7 @@ function Home(props: Props) {
             <Grid item>
               <Typography
                 variant="h6"
-                aria-label={`${totalItems} secrets stored`}
+                aria-label={`${totalItems || ''} secrets stored`}
               >
                 {totalItems} secrets stored
               </Typography>
