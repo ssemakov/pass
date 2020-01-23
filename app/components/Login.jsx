@@ -3,58 +3,13 @@ import React, { useEffect } from 'react';
 import type { RouterHistory, ContextRouter } from 'react-router';
 import Settings from 'electron-settings';
 import isEmpty from 'lodash/isEmpty';
-import {
-  Field,
-  type FieldInputProps,
-  type FormikProps,
-  Formik,
-  Form,
-  ErrorMessage
-} from 'formik';
-import {
-  Container,
-  Grid,
-  InputAdornment,
-  IconButton,
-  Typography,
-  OutlinedInput
-} from '@material-ui/core';
-import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import { Field, type FormikProps, Formik, Form, ErrorMessage } from 'formik';
+import { Container, Grid, Typography } from '@material-ui/core';
+import PasswordField from './PasswordField';
 
 type FormValues = {
   password: string
 };
-
-type PasswordFieldProps = {
-  disabled: boolean,
-  field: FieldInputProps<FormValues>
-};
-
-function PasswordField({ disabled, field }: PasswordFieldProps) {
-  return (
-    <OutlinedInput
-      autoFocus
-      fullWidth
-      id="password-input"
-      type="password"
-      placeholder="Enter your Master Password"
-      disabled={disabled}
-      {...field}
-      endAdornment={
-        <InputAdornment position="end" variant="filled">
-          <IconButton
-            aria-label="enter"
-            color="primary"
-            type="submit"
-            disabled={disabled}
-          >
-            <KeyboardReturnIcon />
-          </IconButton>
-        </InputAdornment>
-      }
-    />
-  );
-}
 
 type FormProps = {|
   authenticated: boolean,
@@ -107,7 +62,6 @@ export default function(props: FormProps) {
       }}
       onSubmit={handleSubmit}
       render={(formik: FormikProps<FormValues>) => {
-        console.log('formik', formik);
         return (
           <Form>
             <Container maxWidth="sm">
@@ -119,9 +73,12 @@ export default function(props: FormProps) {
               >
                 <Grid item style={{ marginTop: 30 }}>
                   <Field
+                    autoFocus
+                    fullWidth
                     name="password"
                     component={PasswordField}
                     disabled={isEmpty(storagePath)}
+                    placeholder="Enter your Master Password"
                   />
                 </Grid>
                 <Grid item>

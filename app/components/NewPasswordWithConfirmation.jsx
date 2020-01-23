@@ -1,54 +1,97 @@
 // @flow
 import React, { useState } from 'react';
 import isEmpty from 'lodash/isEmpty';
-import PasswordInput from './PasswordInput';
+import { Formik, Form, Field, ErrorMessage, type FormikProps } from 'formik';
+import { Collapse, Grid, Typography } from '@material-ui/core';
+import PasswordField from './PasswordField';
+
+type FormValues = {
+  password: string,
+  confirmation: ?string
+};
 
 type Props = {
-  createLabel: string,
   onButtonClick: (password: string) => void
 };
 
-export default function({ createLabel, onButtonClick }: Props) {
-  // TODO: lift state to the page SignUp component and change to Formik
-  const [password, setPassword] = useState('');
-  const [confirmation, setConfirmation] = useState({
-    value: '',
-    confirmed: false
-  });
+export default function({ onButtonClick }: Props) {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showPasswordEnterButton, setShowPasswordEnterButton] = useState(true);
 
-  function handleConfirmationChange({ target: { value } }) {
-    setConfirmation({ value, confirmed: value === password });
+  function handleSubmit({ password, confirmation }, formik) {
+    if (!isEmpty(password) && isEmpty(confirmation) && !showConfirmation) {
+      return setShowConfirmation(true);
+    }
+
+    if (password === confirmation) {
+      return onButtonClick(password);
+    }
+
+    formik.setFieldError('confirmation', "Passwords don't match");
+  }
+
+  function handlePasswordFocus() {
+    setShowPasswordEnterButton(true);
+  }
+
+  function handleConfirmationFocus() {
+    setShowPasswordEnterButton(false);
   }
 
   return (
-    <>
-      <div>
-        <PasswordInput
-          value={password}
-          onChange={({ target: { value } }) => setPassword(value)}
-        />
-      </div>
-      {!isEmpty(password) && (
-        <div>
-          <div>Please confirm the password</div>
-          <div>
-            <PasswordInput
-              value={confirmation.value}
-              onChange={handleConfirmationChange}
-            />
-          </div>
-          {!isEmpty(confirmation.value) && !confirmation.confirmed && (
-            <div>Passwords don&apos;t match </div>
-          )}
-          <button
-            type="button"
-            onClick={() => onButtonClick(password)}
-            disabled={!confirmation.confirmed}
-          >
-            {createLabel}
-          </button>
-        </div>
+    <Formik
+      initialValues={{
+        password: '',
+        confirmation: ''
+      }}
+      onSubmit={handleSubmit}
+    >
+      {({ errors }: FormikProps<FormValues>) => (
+        <Form>
+          <Grid container direction="column" spacing={1}>
+            <Grid item>
+              <Field
+                autoFocus={!showConfirmation}
+                fullWidth
+                showEnterButton={showPasswordEnterButton}
+                name="password"
+                component={PasswordField}
+                placeholder="Enter your storage Master Password"
+                onFocus={handlePasswordFocus}
+              />
+            </Grid>
+            <Grid item>
+              <Collapse in={showConfirmation} timeout="auto">
+                {showConfirmation && (
+                  <Field
+                    autoFocus
+                    fullWidth
+                    name="confirmation"
+                    component={PasswordField}
+                    placeholder="Please confirm the Master Password"
+                    showEnterButton={!showPasswordEnterButton}
+                    onFocus={handleConfirmationFocus}
+                  />
+                )}
+              </Collapse>
+            </Grid>
+            <Grid item>
+              {isEmpty(errors) ? (
+                <>&nbsp;</>
+              ) : (
+                <ErrorMessage
+                  name="confirmation"
+                  render={(message: string) => (
+                    <Typography variant="body2" color="error">
+                      {message}
+                    </Typography>
+                  )}
+                />
+              )}
+            </Grid>
+          </Grid>
+        </Form>
       )}
-    </>
+    </Formik>
   );
 }
