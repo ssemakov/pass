@@ -45,17 +45,15 @@ export default class MenuBuilder {
 
   buildDarwinTemplate() {
     const subMenuAbout = {
-      label: 'Electron',
+      label: 'Pass',
       submenu: [
         {
-          label: 'About ElectronReact',
+          label: 'About Pass',
           selector: 'orderFrontStandardAboutPanel:'
         },
         { type: 'separator' },
-        { label: 'Services', submenu: [] },
-        { type: 'separator' },
         {
-          label: 'Hide ElectronReact',
+          label: 'Hide Pass',
           accelerator: 'Command+H',
           selector: 'hide:'
         },
@@ -169,27 +167,13 @@ export default class MenuBuilder {
         {
           label: 'Learn More',
           click() {
-            shell.openExternal('http://electron.atom.io');
-          }
-        },
-        {
-          label: 'Documentation',
-          click() {
-            shell.openExternal(
-              'https://github.com/atom/electron/tree/master/docs#readme'
-            );
-          }
-        },
-        {
-          label: 'Community Discussions',
-          click() {
-            shell.openExternal('https://discuss.atom.io/c/electron');
+            shell.openExternal('https://github.com/ssemakov/pass');
           }
         },
         {
           label: 'Search Issues',
           click() {
-            shell.openExternal('https://github.com/atom/electron/issues');
+            shell.openExternal('https://github.com/ssemakov/pass/issues');
           }
         }
       ]
@@ -266,27 +250,13 @@ export default class MenuBuilder {
           {
             label: 'Learn More',
             click() {
-              shell.openExternal('http://electron.atom.io');
-            }
-          },
-          {
-            label: 'Documentation',
-            click() {
-              shell.openExternal(
-                'https://github.com/atom/electron/tree/master/docs#readme'
-              );
-            }
-          },
-          {
-            label: 'Community Discussions',
-            click() {
-              shell.openExternal('https://discuss.atom.io/c/electron');
+              shell.openExternal('https://github.com/ssemakov/pass/');
             }
           },
           {
             label: 'Search Issues',
             click() {
-              shell.openExternal('https://github.com/atom/electron/issues');
+              shell.openExternal('https://github.com/ssemakov/pass/issues');
             }
           }
         ]
