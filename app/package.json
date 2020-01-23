@@ -2,7 +2,7 @@
   "name": "pass",
   "productName": "Pass",
   "version": "0.1.0",
-  "description": "Yet another password manager.",
+  "description": "Another password manager.",
   "main": "./main.prod.js",
   "author": {
     "name": "Simon Semakov",
