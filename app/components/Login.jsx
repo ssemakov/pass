@@ -61,49 +61,48 @@ export default function(props: FormProps) {
         password: ''
       }}
       onSubmit={handleSubmit}
-      render={(formik: FormikProps<FormValues>) => {
-        return (
-          <Form>
-            <Container maxWidth="sm">
-              <Grid
-                container
-                direction="column"
-                justify="center"
-                style={{ minHeight: '100vh' }}
-              >
-                <Grid item style={{ marginTop: 30 }}>
-                  <Field
-                    autoFocus
-                    fullWidth
-                    name="password"
-                    component={PasswordField}
-                    disabled={isEmpty(storagePath)}
-                    placeholder="Enter your Master Password"
-                  />
-                </Grid>
-                <Grid item>
-                  <Grid container justify="center">
-                    <Grid item>
-                      {isEmpty(formik.errors) ? (
-                        <>&nbsp;</>
-                      ) : (
-                        <ErrorMessage
-                          name="password"
-                          render={(message: string) => (
-                            <Typography variant="body2" color="error">
-                              {message}
-                            </Typography>
-                          )}
-                        />
-                      )}
-                    </Grid>
+    >
+      {(formik: FormikProps<FormValues>) => (
+        <Form>
+          <Container maxWidth="sm">
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              style={{ minHeight: '100vh' }}
+            >
+              <Grid item style={{ marginTop: 30 }}>
+                <Field
+                  autoFocus
+                  fullWidth
+                  name="password"
+                  component={PasswordField}
+                  disabled={isEmpty(storagePath)}
+                  placeholder="Enter your Master Password"
+                />
+              </Grid>
+              <Grid item>
+                <Grid container justify="center">
+                  <Grid item>
+                    {isEmpty(formik.errors) ? (
+                      <>&nbsp;</>
+                    ) : (
+                      <ErrorMessage
+                        name="password"
+                        render={(message: string) => (
+                          <Typography variant="body2" color="error">
+                            {message}
+                          </Typography>
+                        )}
+                      />
+                    )}
                   </Grid>
                 </Grid>
               </Grid>
-            </Container>
-          </Form>
-        );
-      }}
-    />
+            </Grid>
+          </Container>
+        </Form>
+      )}
+    </Formik>
   );
 }
