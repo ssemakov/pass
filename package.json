@@ -58,13 +58,17 @@
   "build": {
     "productName": "Pass",
     "appId": "io.pass",
+    "extraResources": [
+      "app/assets"
+    ],
     "files": [
       "dist/",
       "node_modules/",
       "app.html",
       "main.prod.js",
       "main.prod.js.map",
-      "package.json"
+      "package.json",
+      "assets"
     ],
     "dmg": {
       "contents": [
@@ -102,7 +106,7 @@
       "provider": "github",
       "owner": "ssemakov",
       "repo": "pass",
-      "private": false
+      "private": true
     }
   },
   "repository": {
@@ -247,7 +251,6 @@
     "yarn": "^1.21.1"
   },
   "dependencies": {
-    "about-window": "^1.13.0",
     "@hot-loader/react-dom": "^16.11.0",
     "connected-react-router": "^6.6.1",
     "core-js": "^3.5.0",

@@ -1,8 +1,7 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron';
-import orderFrontStandardAboutPanel from 'about-window';
+import openAboutWindow from 'about-window';
 import path from 'path';
-// import Icon from './assets/icon.png';
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
@@ -52,12 +51,10 @@ export default class MenuBuilder {
       submenu: [
         {
           label: 'About Pass',
-          // selector: 'orderFrontStandardAboutPanel:'
           click: () => {
-            console.log('icon', path.join(__dirname, 'resources', 'icon.png'));
-            orderFrontStandardAboutPanel({
+            openAboutWindow({
               icon_path: path.join(__dirname, 'assets', 'icon.png'),
-              package_json_dir: path.join(__dirname, '..'),
+              package_json_dir: __dirname,
               copyright: 'Copyright (c) 2020 Simon Semakov',
               win_options: {
                 parent: this.mainWindow,
