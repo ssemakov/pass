@@ -1,6 +1,8 @@
 // @flow
 import React, { useEffect, useState } from 'react';
 import { withRouter, type ContextRouter } from 'react-router';
+import { Container, Grid, Fab, Tooltip, Typography } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import { withStorage, type WithStorageInjectedProps } from '../storage';
 import SearchItems from './SearchItems';
 
@@ -29,15 +31,37 @@ function Home(props: Props) {
   };
 
   return (
-    <>
-      <div>{totalItems} secrets stored</div>
-      <button type="button" onClick={handleAddNewItemClick}>
-        + Add new Item
-      </button>
-      <div>
-        <SearchItems />
-      </div>
-    </>
+    <Container fixed>
+      <Grid container direction="column" spacing={3}>
+        <Grid item />
+        <Grid item>
+          <Grid container direction="row" alignItems="center" spacing={3}>
+            <Grid item>
+              <Tooltip
+                title="Add new secret"
+                aria-label="add new secret"
+                placement="bottom"
+              >
+                <Fab color="primary" onClick={handleAddNewItemClick}>
+                  <AddIcon />
+                </Fab>
+              </Tooltip>
+            </Grid>
+            <Grid item>
+              <Typography
+                variant="h6"
+                aria-label={`${totalItems || ''} secrets stored`}
+              >
+                {totalItems} secrets stored
+              </Typography>
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <SearchItems />
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 

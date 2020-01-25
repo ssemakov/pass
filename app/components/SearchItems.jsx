@@ -1,6 +1,7 @@
 // @flow
 import React, { useState } from 'react';
 import { type knex } from 'knex';
+import { Grid, TextField } from '@material-ui/core';
 import { withStorage } from '../storage';
 import ItemsList from './ItemsList';
 
@@ -26,10 +27,22 @@ function SearchItems({ storage }: Props) {
   };
 
   return (
-    <>
-      <input placeholder="Search by name or URL" onChange={handleInputChange} />
-      <ItemsList items={items} />
-    </>
+    <Grid container direction="column" spacing={2}>
+      <Grid item>
+        <TextField
+          autoFocus
+          fullWidth
+          aria-label="Search stored secrets"
+          InputProps={{ clases: { input: { backgroundColor: '#fff' } } }}
+          label="Search"
+          variant="outlined"
+          onChange={handleInputChange}
+        />
+      </Grid>
+      <Grid item>
+        <ItemsList items={items} />
+      </Grid>
+    </Grid>
   );
 }
 
