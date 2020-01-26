@@ -6,8 +6,8 @@ Another password manager.
 
 ## Binareis
 
-- MacOsX: https://github.com/ssemakov/pass/releases/download/untagged-a30b830274bd5d2ffbed/Pass-0.1.0.dmg
-- Linux: https://github.com/ssemakov/pass/releases/download/untagged-a30b830274bd5d2ffbed/pass_0.1.0_amd64.deb
+- MacOsX: https://github.com/ssemakov/pass/releases/download/v0.1.0/Pass-0.1.0.dmg
+- Linux: https://github.com/ssemakov/pass/releases/download/v0.1.0/pass_0.1.0_amd64.deb
 
 ## Getting Started
 
