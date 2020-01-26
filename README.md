@@ -2,7 +2,7 @@
 
 Another password manager.
 
-![Pass Demo](https://raw.githubusercontent.com/ssemakov/pass/master/pass_0_1_0_demo.gif)
+![Pass Demo](pass_0_1_0_demo.gif)
 
 ## Binareis
 
