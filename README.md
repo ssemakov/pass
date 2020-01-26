@@ -2,12 +2,12 @@
 
 Another password manager.
 
-![Pass Demo](https://raw.githubusercontent.com/ssemakov/pass/master/pass_0_1_0_demo.gif)
+![Pass Demo](demo/pass_0_1_0_demo.gif)
 
 ## Binareis
 
-- MacOsX: https://github.com/ssemakov/pass/releases/download/v0.1.0/Pass-0.1.0.dmg
-- Linux: https://github.com/ssemakov/pass/releases/download/v0.1.0/pass_0.1.0_amd64.deb
+- MacOsX [Pass-0.1.0.dmg](https://github.com/ssemakov/pass/releases/download/v0.1.0/Pass-0.1.0.dmg)
+- Linux: Debian package [pass_0.1.0_amd64.deb](https://github.com/ssemakov/pass/releases/download/v0.1.0/pass_0.1.0_amd64.deb)
 
 ## Getting Started
 
