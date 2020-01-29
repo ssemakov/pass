@@ -19,14 +19,6 @@ const dbConfig = (secret: string, path: string) => ({
   debug: true
 });
 
-// class CannotOpenFileError extends Error {
-//   constructor(message: string, code: string) {
-//     super(message);
-//     this.name = 'CannotOpenFileError';
-//     this.code = code;
-//   }
-// }
-
 class EncryptedStorage {
   static create(secret: string, path: string) {
     const db = knex(dbConfig(secret, path));
