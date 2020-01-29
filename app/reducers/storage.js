@@ -18,7 +18,6 @@ export default function(
         storagePath: action.storagePath
       };
     case SET_STORAGE_PATH:
-      console.log('reducer/storagePath', action.storagePath);
       return {
         ...state,
         storagePath: action.path

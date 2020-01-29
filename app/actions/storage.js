@@ -23,9 +23,8 @@ export function setStoragePath(path: string) {
 
 export function authenticate(secret: string, storagePath: string) {
   return async (dispatch: Dispatch) => {
-    return EncryptedStorage.tryKey(secret, storagePath).then(() =>
-      dispatch(authenticationSucceeded(secret, storagePath))
-    );
+    await EncryptedStorage.tryKey(secret, storagePath);
+    return dispatch(authenticationSucceeded(secret, storagePath));
   };
 }
 
