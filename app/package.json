@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "about-window": "^1.13.2",
-    "knex": "^0.20.4",
+    "knex": "^0.20.8",
     "lodash": "^4.17.15",
     "sqlite3": "npm:@journeyapps/sqlcipher"
   }

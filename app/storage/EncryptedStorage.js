@@ -1,55 +1,46 @@
 // @flow
-
-import knex from 'knex';
 import { promises as fs } from 'fs';
-
-const dbConfig = (secret: string, path: string) => ({
-  client: 'sqlite3',
-  connection: {
-    filename: path
-  },
-  useNullAsDefault: true,
-  pool: {
-    afterCreate: (conn, done) => {
-      conn.run('PRAGMA cipher_compatibility = 3;');
-      conn.run(`PRAGMA key = '${secret}';`);
-      done();
-    }
-  },
-  debug: true
-});
+import KnexAdapter from '../db';
 
 class EncryptedStorage {
   static create(secret: string, path: string) {
-    const db = knex(dbConfig(secret, path));
-    return db.schema.createTable('login_items', table => {
-      table.increments('id');
-      table.string('name');
-      table.string('login');
-      table.string('password');
-      table.string('url');
-      table.integer('created_at');
-      table.integer('updated_at');
-    });
+    KnexAdapter.resetConnection();
+    const connection = KnexAdapter.connection({ secret, path });
+
+    return connection.schema
+      .createTable('login_items', table => {
+        table.increments('id');
+        table.string('name');
+        table.string('login');
+        table.string('password');
+        table.string('url');
+        table.integer('created_at');
+        table.integer('updated_at');
+      })
+      .then(() => {
+        return new EncryptedStorage(secret, path);
+      });
   }
 
   static tryKey(secret: string, path: string) {
     return fs.access(path).then(() => {
-      const db = knex(dbConfig(secret, path));
-      return db('login_items')
+      KnexAdapter.resetConnection();
+      const connection = KnexAdapter.connection({ secret, path });
+
+      return connection('login_items')
         .first('id')
         .return(true);
     });
   }
 
-  db: knex;
+  db: *;
 
   constructor(secret: string, path: ?string) {
-    this.db = knex(dbConfig(secret, path || 'storage.pass'));
+    this.db = KnexAdapter.connection({ secret, path: path || 'storage.pass' });
   }
 
   rekey = (newSecret: string) => {
-    this.db.raw(`PRAGMA rekey = '${newSecret};'`);
+    return this.db.raw(`PRAGMA rekey = '${newSecret}';`);
   };
 }
 

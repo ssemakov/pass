@@ -1,3 +1,4 @@
+// @flow
 import React, { Fragment } from 'react';
 import { render } from 'react-dom';
 import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
@@ -17,5 +18,6 @@ render(
   <AppContainer>
     <Root store={store} history={history} />
   </AppContainer>,
+  // $FlowIgnore : the element with id 'root' is always defined in app.html
   document.getElementById('root')
 );

@@ -8,6 +8,7 @@ module.exports = {
     }
   },
   rules: {
+    'no-underscore-dangle': 'off',
     'promise/catch-or-return': 'off',
     'react/jsx-props-no-spreading': [
       'error',
