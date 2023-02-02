@@ -78,6 +78,7 @@ yarn flow
 - [Formik](https://jaredpalmer.com/formik) - Form helper for React
 - [Material-UI](https://material-ui.com/) - React UI components supporting Material Design
 - [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) - boiler plate
+- [sqlcipher](https://github.com/sqlcipher/sqlcipher) - encryptable SQLite database
 
 ## Versioning
 
