@@ -1,3 +1,7 @@
+> [!NOTE]
+> This project is archived and not mantained. 
+> A new version written on a modernized stack is available here https://github.com/ssemakov/pass-rework
+
 # Pass
 
 Another password manager.
@@ -77,13 +81,3 @@ yarn flow
 - [Redux](https://redux.js.org/) - State Container for JS Apps
 - [Formik](https://jaredpalmer.com/formik) - Form helper for React
 - [Material-UI](https://material-ui.com/) - React UI components supporting Material Design
-- [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate) - boiler plate
-- [sqlcipher](https://github.com/sqlcipher/sqlcipher) - encryptable SQLite database
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/ssemakov/pass/releases).
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
